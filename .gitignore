@@ -1,0 +1,93 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.manifest
+*.spec
+
+# Django
+*.log
+db.sqlite3
+media/
+staticfiles/
+local_settings.py
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# Linux
+*~
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Environment variables
+.env
+.env.*
+
+# Docker
+*.pid
+*.seed
+*.pid.lock
+docker-compose.override.yml
+
+# General
+*.swp
+*.swo
+
+# Ignore backend virtual environments
+venv/
+env/
+ENV/
+.venv/
+.python-version
+
+# Ignore test coverage reports
+htmlcov/
+.coverage
+.tox/
+.nox/
+.cache/
+.pytest_cache/
+coverage.xml
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore mypy and other type checker outputs
+.mypy_cache/
+.dmypy.json
+.pyre/
+
+# Ignore pipenv and poetry files
+Pipfile.lock
+poetry.lock
+
+# Ignore backup files
+*.bak
+*.tmp
+
+# Ignore node_modules at root (in case of scripts)
+node_modules/
+
+# Ignore frontend build artifacts at root (handled in frontend/.gitignore)
+frontend/.next/
+frontend/node_modules/
+frontend/out/
+frontend/build/
+frontend/.vercel
+
+# Ignore backend migrations if needed (optional, uncomment if desired)
+# backend/core/migrations/
