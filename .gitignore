@@ -92,3 +92,7 @@ frontend/.vercel
 
 # Ignore backend migrations if needed (optional, uncomment if desired)
 # backend/core/migrations/
+
+.clineignore
+.clinerules
+memory-bank
