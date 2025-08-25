@@ -2,18 +2,18 @@ import React from "react";
 
 export default function ChatInterface() {
   return (
-    <section className="flex flex-col h-full">
+    <section className="flex flex-col h-full pb-8">
       <header className="mb-4 pb-2">
         <h1 className="text-2xl font-bold tracking-tight">Atlas</h1>
         <p className="text-sm text-gray-200">Find and connect with Hack Club members.</p>
       </header>
       <div className="flex-1 flex flex-col gap-4 overflow-y-auto">
         {/* Chat messages will go here */}
-        <div className="self-start bg-neutral-900 rounded-md px-4 py-2 shadow-brutal font-mono text-white">
+        <div className="self-start rounded-md px-4 py-2 shadow-brutal font-mono text-white" style={{ background: "var(--background)" }}>
           Hi! Ask me to find people in Hack Club by skill, interest, or location.
         </div>
       </div>
-      <form className="mt-4 flex justify-center">
+      <form className="mt-4 flex justify-center mb-8">
         <div className="flex gap-2 w-full max-w-2xl items-end">
           <input
             type="text"

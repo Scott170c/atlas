@@ -15,18 +15,19 @@ export default function DiscoveredProfilesSidebar() {
 
   return (
     <div
-      className="absolute top-0 right-0 h-full z-10 bg-neutral-900 flex flex-col overflow-hidden transition-all duration-500 border-l border-gray-700"
+      className="absolute top-0 right-0 h-full z-10 flex flex-col overflow-hidden transition-all duration-500 border-l border-gray-700"
       style={{
+        background: "var(--background)",
         width: expanded ? "54rem" : "20rem",
         minWidth: "16rem",
         maxWidth: "100vw",
       }}
     >
       {/* Header */}
-      <div className="flex items-center justify-between w-full px-6 py-4 bg-neutral-900 flex-none z-10">
+      <div className="flex items-center justify-between w-full px-6 py-4 flex-none z-10">
         <h2 className="text-xl font-bold text-white whitespace-nowrap">Discovered Profiles</h2>
         <button
-          className="text-xs rounded-md px-2 py-1 text-black bg-white hover:bg-gray-300 transition-colors duration-200 font-bold whitespace-nowrap ml-auto"
+          className="text-xs rounded-md px-2 py-1 bg-white hover:bg-gray-300 text-black font-bold whitespace-nowrap ml-auto transition-colors duration-200"
           onClick={() => setExpanded((v) => !v)}
         >
           {expanded ? "Close" : "View all"}
@@ -46,13 +47,14 @@ export default function DiscoveredProfilesSidebar() {
           {profiles.map((profile) => (
             <div
               key={profile.id}
-              className="bg-neutral-900 rounded-md p-4 shadow-brutal flex gap-4 items-center h-48 border border-gray-700"
-              style={{ width: "16rem", minWidth: "16rem", maxWidth: "16rem" }}
+              className="rounded-md p-4 shadow-brutal flex gap-4 items-center h-48 border border-gray-700"
+              style={{ background: "var(--background)", width: "16rem", minWidth: "16rem", maxWidth: "16rem" }}
             >
               <img
                 src={profile.picture}
                 alt={profile.name}
-                className="w-12 h-12 rounded-full border-2 border-white object-cover"
+                className="w-12 h-12 rounded-full object-cover"
+                style={{ background: "var(--background)" }}
               />
               <div className="flex-1 min-w-0">
                 <div className="font-bold text-white truncate">{profile.name}</div>

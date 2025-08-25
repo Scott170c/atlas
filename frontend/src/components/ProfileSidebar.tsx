@@ -3,8 +3,9 @@ import React from "react";
 export default function ProfileSidebar() {
   return (
     <div
-      className="absolute top-0 left-0 h-full z-50 bg-neutral-900 p-6 flex flex-col transition-all duration-300 ease-in-out overflow-hidden border border-gray-700"
+      className="absolute top-0 left-0 h-full z-50 p-6 flex flex-col transition-all duration-300 ease-in-out overflow-hidden border border-gray-700"
       style={{
+        background: "var(--background)",
         width: "clamp(12rem, 22vw, 20rem)",
         minWidth: "10rem",
         maxWidth: "22rem"
@@ -15,6 +16,7 @@ export default function ProfileSidebar() {
           src="/public/vercel.svg"
           alt="Profile"
           className="w-20 h-20 rounded-full object-cover mb-2"
+          style={{ background: "var(--background)" }}
         />
         <div className="text-lg font-bold text-white">Jane Doe</div>
         <div className="flex items-center gap-2 text-xs text-gray-400">
