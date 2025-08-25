@@ -7,8 +7,8 @@ type LayoutProps = {
 
 export default function Layout({ sidebar, children }: LayoutProps) {
   return (
-    <div className="h-screen flex text-white" style={{ background: "var(--background)" }}>
-      <aside className="15vw p-6 flex-shrink-0 flex flex-col h-full" style={{ background: "var(--background)" }}>
+    <div className="container h-screen flex text-text bg-background">
+      <aside className="15vw p-6 flex-shrink-0 flex flex-col h-full bg-elevated" style={{ background: "var(--elevated)" }}>
         {sidebar}
       </aside>
       <main

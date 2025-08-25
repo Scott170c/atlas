@@ -1,28 +1,107 @@
-import React from "react";
+"use client";
+
+import React, { useState, useRef, FormEvent } from "react";
+import CompactProfileCard from "./CompactProfileCard";
+
+type Message =
+  | { type: "user"; text: string }
+  | { type: "agent"; text: string; recommendations?: Array<{ name: string; slack: string; picture: string; location: string; bio: string }> };
+
+const MOCK_PROFILES = [
+  {
+    name: "Alex Kim",
+    slack: "@alexkim",
+    picture: "/public/vercel.svg",
+    location: "Toronto, ON",
+    bio: "React dev, hackathon enthusiast, loves open source.",
+  },
+  {
+    name: "Priya Patel",
+    slack: "@priyapatel",
+    picture: "/public/vercel.svg",
+    location: "San Francisco, CA",
+    bio: "TypeScript wizard, UI/UX designer, always learning.",
+  },
+  {
+    name: "Sam Lee",
+    slack: "@samlee",
+    picture: "/public/vercel.svg",
+    location: "New York, NY",
+    bio: "Full-stack builder, open source contributor.",
+  },
+];
 
 export default function ChatInterface() {
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      type: "agent",
+      text: "Hi! Ask me to find people in Hack Club by skill, interest, or location.",
+    },
+  ]);
+  const [input, setInput] = useState("");
+  const chatEndRef = useRef<HTMLDivElement>(null);
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+    setMessages((msgs) => [
+      ...msgs,
+      { type: "user", text: input },
+      {
+        type: "agent",
+        text: "Here are 3 people you might want to connect with:",
+        recommendations: MOCK_PROFILES,
+      },
+    ]);
+    setInput("");
+    setTimeout(() => {
+      chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  };
+
   return (
-    <section className="flex flex-col h-full pb-8">
+    <section className="container flex flex-col h-full pb-8">
       <header className="mb-4 pb-2">
-        <h1 className="text-2xl font-bold tracking-tight">Atlas</h1>
-        <p className="text-sm text-gray-200">Find and connect with Hack Club members.</p>
+        <h1 className="title">Atlas</h1>
+        <p className="caption">Find and connect with Hack Club members.</p>
       </header>
       <div className="flex-1 flex flex-col gap-4 overflow-y-auto">
-        {/* Chat messages will go here */}
-        <div className="self-start rounded-md px-4 py-2 shadow-brutal font-mono text-white" style={{ background: "var(--background)" }}>
-          Hi! Ask me to find people in Hack Club by skill, interest, or location.
-        </div>
+        {messages.map((msg, idx) =>
+          msg.type === "user" ? (
+            <div
+              key={idx}
+              className="self-end card"
+              style={{ background: "var(--primary)", color: "var(--background)" }}
+            >
+              {msg.text}
+            </div>
+          ) : (
+            <div key={idx} className="self-start flex flex-col gap-2">
+              <div className="card">{msg.text}</div>
+              {msg.recommendations && (
+                <div className="flex gap-2 mt-1">
+                  {msg.recommendations.map((profile, i) => (
+                    <CompactProfileCard key={i} {...profile} />
+                  ))}
+                </div>
+              )}
+            </div>
+          )
+        )}
+        <div ref={chatEndRef} />
       </div>
-      <form className="mt-4 flex justify-center mb-8">
+      <form className="mt-4 flex justify-center mb-8" onSubmit={handleSubmit}>
         <div className="flex gap-2 w-full max-w-2xl items-end">
           <input
             type="text"
-            className="flex-1 px-3 py-2 font-mono bg-transparent text-white placeholder-gray-400 border-b-2 border-white focus:outline-none focus:ring-0"
+            className="flex-1 monospace"
             placeholder="e.g. Find React devs in Toronto"
+            value={input}
+            onChange={e => setInput(e.target.value)}
           />
           <button
             type="submit"
-            className="bg-white text-black px-4 py-2 rounded-md font-bold shadow-brutal hover:bg-gray-300 transition-colors duration-200"
+            className="pill"
           >
             Send
           </button>
