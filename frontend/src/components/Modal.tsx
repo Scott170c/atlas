@@ -31,11 +31,10 @@ export default function Modal({ open, onClose, children }: ModalProps) {
   return ReactDOM.createPortal(
     <div
       className="fixed inset-0 z-[1000] flex items-center justify-center"
-      style={{ background: "rgba(20,20,20,0.85)" }}
       onClick={onClose}
     >
       <div
-        className="card p-8 max-w-lg w-full relative"
+        className="bg-elevated p-8 max-w-lg w-full relative penis-lol"
         onClick={e => e.stopPropagation()}
       >
         <button

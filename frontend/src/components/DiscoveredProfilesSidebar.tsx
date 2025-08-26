@@ -10,6 +10,8 @@ type Profile = {
   picture: string;
   location: string;
   bio: string;
+  keywords: string[];
+  links: { label: string; url: string }[];
 };
 
 export default function DiscoveredProfilesSidebar() {
@@ -25,9 +27,14 @@ export default function DiscoveredProfilesSidebar() {
     id: i,
     name: `User ${i + 1}`,
     slack: `@user${i + 1}`,
-    picture: "/public/vercel.svg",
+    picture: "/pfp.svg",
     location: "San Francisco, CA",
     bio: "Passionate about building cool things, collaborating with others, and always learning. Loves hackathons, open source, and sharing knowledge with the community.",
+    keywords: ["React", "TypeScript", "UI/UX", "Open Source", "Mentorship"],
+    links: [
+      { label: "Website", url: "https://janedoe.dev" },
+      { label: "Github", url: "https://github.com/janedoe" }
+    ]
   }));
 
   // For demo, use the same text for both short and long bio
@@ -74,9 +81,9 @@ export default function DiscoveredProfilesSidebar() {
     >
       {/* Header */}
       <div className="flex items-center justify-between w-full px-6 py-4 flex-none z-10">
-        <h2 className="text-xl font-bold text-text whitespace-nowrap">Discovered Profiles</h2>
+        <h2 className="font-bold text-white whitespace-nowrap subtitle">Discovered Profiles</h2>
         <button
-          className="text-xs rounded-md px-2 py-1 bg-primary hover:bg-red text-white font-bold whitespace-nowrap ml-auto transition-colors duration-200"
+          className="text-xs px-2 py-1 text-white font-bold whitespace-nowrap ml-auto transition-colors duration-200"
           onClick={() => setExpanded((v) => !v)}
         >
           {expanded ? "Close" : "View all"}
@@ -85,7 +92,7 @@ export default function DiscoveredProfilesSidebar() {
       {/* Scrollable Content */}
       <div className="flex-1 overflow-y-auto p-6">
         <div
-          className={`grid gap-4`}
+          className={`grid gap-4${!expanded ? " justify-items-center" : ""}`}
           style={{
             gridTemplateColumns: expanded
               ? "repeat(3, 16rem)"
@@ -109,18 +116,8 @@ export default function DiscoveredProfilesSidebar() {
                 bio={profile.bio}
                 onClick={() => handleProfileClick(profile, profile.id)}
                 pinned={pinnedProfiles.includes(profile.id)}
+                onPinToggle={() => handlePinToggle(profile.id)}
               />
-              <button
-                className={`absolute top-2 right-2 bg-white rounded-full px-2 py-1 text-yellow-500 font-bold shadow hover:bg-yellow-100 transition-colors duration-200 z-10`}
-                style={{ border: "1px solid #eab308" }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handlePinToggle(profile.id);
-                }}
-                title={pinnedProfiles.includes(profile.id) ? "Unpin" : "Pin"}
-              >
-                {pinnedProfiles.includes(profile.id) ? "📌" : "📍"}
-              </button>
             </div>
           ))}
         </div>
@@ -135,6 +132,8 @@ export default function DiscoveredProfilesSidebar() {
         location={activeProfile?.location || ""}
         shortBio={activeProfile ? getShortBio(activeProfile.bio) : ""}
         longBio={activeProfile ? getLongBio(activeProfile.bio) : ""}
+        keywords={activeProfile?.keywords || []}
+        links={activeProfile?.links || []}
       />
     </div>
   );

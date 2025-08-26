@@ -8,6 +8,7 @@ type CompactProfileCardProps = {
   bio: string;
   onClick?: () => void;
   pinned?: boolean;
+  onPinToggle?: () => void;
 };
 
 export default function CompactProfileCard({
@@ -18,34 +19,53 @@ export default function CompactProfileCard({
   bio,
   onClick,
   pinned = false,
+  onPinToggle,
 }: CompactProfileCardProps) {
   return (
     <div
-      className={`card interactive flex gap-3 items-center cursor-pointer ${pinned ? "ring-2 ring-yellow-400" : ""}`}
+      className={`px-2 card interactive flex gap-3 items-center cursor-pointer h-36 ${pinned ? "ring-2 ring-yellow-400" : ""}`}
       style={{ width: "15rem", minWidth: "12rem", maxWidth: "16rem" }}
       onClick={onClick}
       tabIndex={0}
       role="button"
       aria-pressed="false"
     >
-      <img
-        src={picture}
-        alt={name}
-        className="w-10 h-10 rounded-full object-cover"
-      />
       <div className="flex-1 min-w-0">
-        <div className="font-bold truncate flex items-center gap-1">
-          {name}
-          {pinned && (
-            <span title="Pinned" className="ml-1 text-yellow-400">📌</span>
-          )}
+        <div className="flex justify-between items-center mb-1">
+          <div>
+            <div className="flex justify-between items-center">
+              <div>
+                <div className="font-bold truncate flex items-center gap-1 text-white">
+                  {name}
+                </div>
+                <div className="text-sm mb-1 flex items-center gap-1 text-secondary">
+                  <span>{slack}</span>
+                </div>
+              </div>
+              <span
+                role="button"
+                aria-label={pinned ? "Unpin profile" : "Pin profile"}
+                tabIndex={0}
+                className={`mx-2 text-yellow-400 text-2xl flex-shrink-0 flex items-center justify-center cursor-pointer focus:outline-none ${pinned ? "" : "opacity-50 hover:opacity-100"}`}
+                onClick={e => {
+                  e.stopPropagation?.();
+                  if (typeof onPinToggle === "function") onPinToggle();
+                }}
+              >
+                {pinned ? "📌" : "📍"}
+              </span>
+            </div>
+            <div className="mb-1 truncate text-secondary text-sm">{location}</div>
+          </div>
+          <img
+            src={picture}
+            alt={name}
+            className="w-16 h-16 rounded-full object-cover"
+          />
         </div>
-        <div className="caption mb-1 flex items-center gap-1">
-          <span className="font-bold">Slack:</span>
-          <span>{slack}</span>
-        </div>
-        <div className="caption mb-1 truncate">{location}</div>
-        <div className="caption italic truncate">{bio}</div>
+
+
+        <div className="italic line-clamp-2 text-white text-sm">{bio}</div>
       </div>
     </div>
   );

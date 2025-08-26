@@ -36,7 +36,7 @@ export default function ChatInterface() {
     {
       type: "agent",
       text: "Hi! Ask me to find people in Hack Club by skill, interest, or location.",
-    },
+    },  
   ]);
   const [input, setInput] = useState("");
   const chatEndRef = useRef<HTMLDivElement>(null);
@@ -62,22 +62,21 @@ export default function ChatInterface() {
   return (
     <section className="container flex flex-col h-full pb-8">
       <header className="mb-4 pb-2">
-        <h1 className="title">Atlas</h1>
-        <p className="caption">Find and connect with Hack Club members.</p>
+        <h1 className="title text-white">Atlas</h1>
+        <p className="caption text-secondary">Find and connect with Hack Club members.</p>
       </header>
       <div className="flex-1 flex flex-col gap-4 overflow-y-auto">
         {messages.map((msg, idx) =>
           msg.type === "user" ? (
             <div
               key={idx}
-              className="self-end card"
-              style={{ background: "var(--primary)", color: "var(--background)" }}
+              className="self-end"
             >
               {msg.text}
             </div>
           ) : (
             <div key={idx} className="self-start flex flex-col gap-2">
-              <div className="card">{msg.text}</div>
+              <div className="">{msg.text}</div>
               {msg.recommendations && (
                 <div className="flex gap-2 mt-1">
                   {msg.recommendations.map((profile, i) => (
@@ -91,17 +90,17 @@ export default function ChatInterface() {
         <div ref={chatEndRef} />
       </div>
       <form className="mt-4 flex justify-center mb-8" onSubmit={handleSubmit}>
-        <div className="flex gap-2 w-full max-w-2xl items-end">
+        <div className="flex gap-2 w-full max-w-2xl items-center">
           <input
             type="text"
-            className="flex-1 monospace"
+            className="flex-1 monospace p-2 text-sm font-bold text-left bg-darkless text-white"
             placeholder="e.g. Find React devs in Toronto"
             value={input}
             onChange={e => setInput(e.target.value)}
           />
           <button
             type="submit"
-            className="pill"
+            className="outline h-auto"
           >
             Send
           </button>

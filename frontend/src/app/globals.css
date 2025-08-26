@@ -19,12 +19,12 @@
   --color-cyan: #5bc0de;
   --color-blue: #338eda;
   --color-purple: #a633d6;
-  --color-text: var(--black);
-  --color-background: var(--white);
-  --color-elevated: var(--white);
-  --color-sheet: var(--snow);
-  --color-sunken: var(--smoke);
-  --color-border: var(--smoke);
+  --color-text: #ffffff;
+  --color-background: var(--color-dark);
+  --color-elevated: var(--color-darkless);
+  --color-sheet: var(--color-darkless);
+  --color-sunken: var(--color-darker);
+  --color-border: var(--color-darkless);
   --color-primary: #ec3750;
   --color-secondary: #8492a6;
   --color-accent: #5bc0de;
@@ -36,7 +36,8 @@
   --breakpoint-m: 64em;
   --breakpoint-l: 96em;
   --breakpoint-xl: 128em;
-  --spacing-0: 0px;
+  /* Yo so basically this fucks up the whole thing */
+  /* --spacing-0: 0px;
   --spacing-1: 4px;
   --spacing-2: 8px;
   --spacing-3: 16px;
@@ -44,7 +45,7 @@
   --spacing-5: 64px;
   --spacing-6: 128px;
   --spacing-7: 256px;
-  --spacing-8: 512px;
+  --spacing-8: 512px; */
   --font-1: 12px;
   --font-2: 16px;
   --font-3: 20px;
@@ -90,6 +91,20 @@
 }
 
 @layer base {
+
+
+  /* globals.css or a component CSS file */
+  .scrollbar-hide {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE 10+ */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+  }
 
   body {
     font-family: "Phantom Sans", system-ui, -apple-system, BlinkMacSystemFont,
@@ -263,15 +278,15 @@
   }
 
   .card {
-    background: var(--elevated);
-    color: var(--text);
+    background: var(--color-darkless);
+    color: var(--color-white);
     border-radius: var(--radii-extra);
     box-shadow: var(--shadow-card);
     overflow: hidden;
   }
 
   .card.sunken {
-    background: var(--sunken);
+    background: var(--color-sunken);
     box-shadow: none;
   }
 
@@ -290,13 +305,13 @@
   input,
   textarea,
   select {
-    background: var(--elevated);
-    color: var(--text);
+    background: var(--color-darkless);
+    color: var(--color-white);
     font-family: inherit;
     border-radius: var(--radii-small);
     border: 0;
     font-size: inherit;
-    padding: var(--spacing-2);
+    /* Use Tailwind p-2 (padding: 8px) in JSX instead of here */
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -439,7 +454,7 @@
     font-size: var(--font-1);
     padding: var(--spacing-3);
     color: var(--text);
-    background: var(--sunken);
+    background: var(--color-sunken);
     overflow: auto;
     border-radius: var(--radii-default);
     white-space: inherit;
@@ -457,7 +472,7 @@
     font-family: "SF Mono", "Roboto Mono", Menlo, Consolas, monospace;
     font-size: inherit;
     color: var(--purple);
-    background: var(--sunken);
+    background: var(--color-sunken);
     overflow: auto;
     border-radius: var(--radii-small);
     margin-left: var(--spacing-1);
@@ -614,7 +629,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: var(--color-dark);
+    --foreground: var(--color-white);
   }
 }
