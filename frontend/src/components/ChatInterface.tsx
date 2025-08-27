@@ -60,13 +60,13 @@ export default function ChatInterface() {
   };
 
   return (
-    <section className="w-full flex flex-col min-h-0 h-[80vh]">
-      <div className="flex-1 min-h-0 flex flex-col gap-4 overflow-y-auto scrollbar-hide px-8 pt-4">
+    <section className="w-full flex flex-col min-h-0 h-[80vh] grow shrink">
+      <div className="flex-1 min-h-0 flex flex-col gap-4 overflow-y-auto scrollbar-hide px-8 pt-4 text-white">
         {messages.map((msg, idx) =>
           msg.type === "user" ? (
             <div
               key={idx}
-              className="self-end max-w-md break-words bg-darkless px-4 py-2 rounded-lg"
+              className="self-end max-w-md break-words bg-darker px-4 py-2 rounded-lg"
             >
               {msg.text}
             </div>
@@ -97,7 +97,7 @@ export default function ChatInterface() {
             />
             <button
               type="submit"
-              className="outline h-auto"
+              className="outline h-auto text-white"
             >
               Send
             </button>

@@ -65,8 +65,8 @@ export default function ProfileSidebar() {
   };
 
   return (
-    <aside className={`fixed top-0 left-0 h-full w-[clamp(12rem,22vw,20rem)] min-w-[10rem] max-w-[22rem] bg-background text-text border border-border flex flex-col z-50${editMode ? " p-0 px-4" : " p-4"}`}>
-      <div className="flex flex-col items-center gap-4 flex-1 overflow-auto pb-28 scrollbar-hide">
+    <aside className={`flex-grow flex-shrink basis-[15%] bg-background text-text border border-border flex flex-col overflow-y-auto${editMode ? " p-0 px-4" : " p-4"}`}>
+      <div className="flex flex-col items-center gap-4 flex-1 pb-28 scrollbar-hide">
         <img src={profile.picture} alt="Profile" className="w-20 h-20 rounded-full object-cover" />
         {editMode ? (
           <form className="w-full flex flex-col gap-3">

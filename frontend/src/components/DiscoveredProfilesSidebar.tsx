@@ -85,14 +85,7 @@ export default function DiscoveredProfilesSidebar() {
   ];
 
   return (
-    <div
-      className="absolute top-0 right-0 h-full z-10 flex flex-col overflow-hidden transition-all duration-500 border-l border-border bg-background text-text"
-      style={{
-        width: expanded ? "54rem" : "20rem",
-        minWidth: "16rem",
-        maxWidth: "100vw",
-      }}
-    >
+    <aside className="flex-grow flex-shrink basis-[15%] bg-background text-text border border-border flex flex-col overflow-y-auto">
       {/* Header */}
       <div className="flex items-center justify-between w-full px-6 py-4 flex-none z-10">
         <h2 className="font-bold text-white whitespace-nowrap subtitle">Discovered Profiles</h2>
@@ -149,6 +142,6 @@ export default function DiscoveredProfilesSidebar() {
         keywords={activeProfile?.keywords || []}
         links={activeProfile?.links || []}
       />
-    </div>
+    </aside>
   );
 }
