@@ -23,26 +23,40 @@ export default function DiscoveredProfilesSidebar() {
   const cardRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
 
   // Placeholder profiles
-  const profiles: Profile[] = Array.from({ length: 24 }, (_, i) => ({
-    id: i,
-    name: `User ${i + 1}`,
-    slack: `@user${i + 1}`,
-    picture: "/pfp.svg",
-    location: "San Francisco, CA",
-    bio: "Passionate about building cool things, collaborating with others, and always learning. Loves hackathons, open source, and sharing knowledge with the community.",
-    keywords: ["React", "TypeScript", "UI/UX", "Open Source", "Mentorship"],
-    links: [
-      { label: "Website", url: "https://janedoe.dev" },
-      { label: "Github", url: "https://github.com/janedoe" }
-    ]
-  }));
+  function randomString(len: number) {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    return Array.from({ length: len }, () => chars[Math.floor(Math.random() * chars.length)]).join("");
+  }
+  function randomBio(len: number) {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    let out = "";
+    for (let i = 0; i < len; i++) {
+      if (i > 0 && Math.random() < 0.15) out += " ";
+      out += chars[Math.floor(Math.random() * chars.length)];
+    }
+    return out;
+  }
+  const [profiles] = useState<Profile[]>(() =>
+    Array.from({ length: 24 }, (_, i) => ({
+      id: i,
+      name: randomString(7),
+      slack: `@${randomString(6)}`,
+      picture: "/pfp.svg",
+      location: randomString(10),
+      bio: randomBio(32),
+      keywords: [randomString(6), randomString(7), randomString(5)],
+      links: [
+        { label: randomString(5), url: "https://janedoe.dev" },
+        { label: randomString(6), url: "https://github.com/janedoe" }
+      ]
+    }))
+  );
 
   // For demo, use the same text for both short and long bio
   const getShortBio = (bio: string) => bio.split(".")[0] + ".";
   const getLongBio = (bio: string) =>
     bio +
-    "\n\n" +
-    "Extended: " +
+    " " +
     "I have participated in many hackathons, contributed to open source, and love collaborating with others. Always looking for new projects and people to work with!";
 
   const handleProfileClick = (profile: Profile, id: number) => {

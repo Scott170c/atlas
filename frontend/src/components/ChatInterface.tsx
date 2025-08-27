@@ -60,12 +60,8 @@ export default function ChatInterface() {
   };
 
   return (
-    <section className="container flex flex-col h-full pb-8">
-      <header className="mb-4 pb-2">
-        <h1 className="title text-white">Atlas</h1>
-        <p className="caption text-secondary">Find and connect with Hack Club members.</p>
-      </header>
-      <div className="flex-1 flex flex-col gap-4 overflow-y-auto">
+    <section className="w-full flex flex-col h-full">
+      <div className="flex-1 min-h-0 flex flex-col gap-4 overflow-y-auto scrollbar-hide px-40 pt-4">
         {messages.map((msg, idx) =>
           msg.type === "user" ? (
             <div
@@ -89,23 +85,25 @@ export default function ChatInterface() {
         )}
         <div ref={chatEndRef} />
       </div>
-      <form className="mt-4 flex justify-center mb-8" onSubmit={handleSubmit}>
-        <div className="flex gap-2 w-full max-w-2xl items-center">
-          <input
-            type="text"
-            className="flex-1 monospace p-2 text-sm font-bold text-left bg-darkless text-white"
-            placeholder="e.g. Find React devs in Toronto"
-            value={input}
-            onChange={e => setInput(e.target.value)}
-          />
-          <button
-            type="submit"
-            className="outline h-auto"
-          >
-            Send
-          </button>
-        </div>
-      </form>
+      <div className="flex-none p-4">
+        <form className="flex justify-center" onSubmit={handleSubmit}>
+          <div className="flex gap-2 w-full max-w-2xl items-center">
+            <input
+              type="text"
+              className="flex-1 monospace p-2 text-sm font-bold text-left bg-darkless text-white outline-none"
+              placeholder="e.g. Find React devs in Toronto"
+              value={input}
+              onChange={e => setInput(e.target.value)}
+            />
+            <button
+              type="submit"
+              className="outline h-auto"
+            >
+              Send
+            </button>
+          </div>
+        </form>
+      </div>
     </section>
   );
 }

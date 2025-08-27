@@ -31,12 +31,12 @@ export default function ProfileMenu({
 
   // Pop out to the left of the anchor, keep within viewport
   const menuWidth = 340;
-  const left = Math.max(anchorRect.left - menuWidth - 12, 0);
+  const left = Math.max(anchorRect.left - menuWidth, 0);
   const top = Math.min(anchorRect.top, window.innerHeight - 320);
 
   return (
     <div
-      className="z-2000 min-w-80 max-w-80 card border-2 border-solid border-border rounded-extra p-6 transition-opacity duration-200 left-0 top-0"
+      className="z-2000 min-w-80 max-w-80 card bg-black shadow-card border-2 border-solid border-border rounded-extra p-6 transition-opacity duration-200 left-0 top-0"
       style={{ left, top, position: "fixed" }}
       onClick={e => e.stopPropagation()}
     >
@@ -78,14 +78,6 @@ export default function ProfileMenu({
             </div>
           )}
         </div>
-        {/* <a
-          href={`https://hackclub.slack.com/team/${slack.replace("@", "")}`}
-          className="mt-3 bg-blue-500 text-white px-4 py-1 rounded font-bold hover:bg-blue-600"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Message on Slack
-        </a> */}
         <button className="outline" onClick={() => window.open(`https://hackclub.slack.com/team/${slack.replace("@", "")}`, "_blank")}>
           Message on Slack
         </button>
