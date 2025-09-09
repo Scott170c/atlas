@@ -6,7 +6,7 @@
 
 ```bash
 git clone https://github.com/Scott170c/atlas.git
-cd atlas
+cd atlas/frontend
 ```
 
 ### 2. Set up environment variables
