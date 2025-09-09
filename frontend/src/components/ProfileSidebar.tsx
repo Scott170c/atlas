@@ -65,82 +65,100 @@ export default function ProfileSidebar() {
   };
 
   return (
-    <aside className={`flex-grow flex-shrink basis-[15%] bg-background text-text border border-border flex flex-col overflow-y-auto${editMode ? " p-0 px-4" : " p-4"}`}>
-      <div className="flex flex-col items-center gap-4 flex-1 pb-28 scrollbar-hide">
-        <img src={profile.picture} alt="Profile" className="w-20 h-20 rounded-full object-cover" />
+  <aside className="w-full h-full text-black flex flex-col overflow-y-auto pt-3" style={{ background: '#e0e6ed', maxWidth: 260, minWidth: 180 }}>
+  <div className="flex flex-col items-center gap-2 flex-1 scrollbar-hide w-full px-3">
+        <img src={profile.picture} alt="Profile" className="w-12 h-12 rounded-full object-cover" />
         {editMode ? (
-          <form className="w-full flex flex-col gap-3">
-            <div className="text-xs text-gray-400 font-bold mx-2 mb-1">Name</div>
+          <form className="w-full flex flex-col gap-2">
+            <div className="text-xs text-gray-400 font-bold mb-1">Name</div>
             <input
-              className="p-2 text-lg font-bold text-left bg-darkless text-white mx-2"
+              className="p-1 text-base font-bold text-left w-full"
+              style={{ background: '#e0e6ed', color: '#111' }}
               value={form.name}
               onChange={e => handleChange("name", e.target.value)}
               placeholder="Name"
             />
-            <div className="text-xs text-gray-400 font-bold mx-2 mb-1">Slack Handle</div>
+            <div className="text-xs text-gray-400 font-bold mb-1">Slack Handle</div>
             <input
-              className="p-2 text-xs text-left bg-darkless text-white mx-2"
+              className="p-1 text-xs text-left w-full"
+              style={{ background: '#e0e6ed', color: '#111' }}
               value={form.slack}
               onChange={e => handleChange("slack", e.target.value)}
               placeholder="@slack"
             />
-            <div className="text-xs text-gray-400 font-bold mx-2 mb-1">Location</div>
+            <div className="text-xs text-gray-400 font-bold mb-1">Location</div>
             <input
-              className="p-2 text-sm text-left bg-darkless text-white mx-2"
+              className="p-1 text-sm text-left w-full"
+              style={{ background: '#e0e6ed', color: '#111' }}
               value={form.location}
               onChange={e => handleChange("location", e.target.value)}
               placeholder="Location"
             />
-            <div className="text-xs text-gray-400 font-bold mx-2 mb-1">Short Bio</div>
+            <div className="text-xs text-gray-400 font-bold mb-1">Short Bio</div>
             <input
-              className="p-2 text-sm text-left bg-darkless text-white mx-2"
+              className="p-1 text-sm text-left w-full"
+              style={{ background: '#e0e6ed', color: '#111' }}
               value={form.shortBio}
               onChange={e => handleChange("shortBio", e.target.value)}
               placeholder="Short bio"
             />
-            <div className="text-xs text-gray-400 font-bold mx-2 mb-1">Long Bio</div>
+            <div className="text-xs text-gray-400 font-bold mb-1">Long Bio</div>
             <textarea
-              className="p-2 text-xs text-left bg-darkless text-white mx-2"
+              className="p-1 text-xs text-left w-full"
+              style={{ background: '#e0e6ed', color: '#111' }}
               value={form.longBio}
               onChange={e => handleChange("longBio", e.target.value)}
               placeholder="Long bio"
-              rows={5}
+              rows={4}
             />
             <div>
               <div className="text-xs text-gray-400 font-bold mx-2 mb-1">Keywords</div>
               {form.keywords.map((kw, idx) => (
                 <div key={idx} className="flex gap-1 mb-1">
                   <input
-                    className="p-2 text-xs text-left bg-darkless text-white mx-2"
+                    className="p-2 text-xs text-left mx-2"
+                    style={{ background: '#e0e6ed', color: '#111' }}
                     value={kw}
                     onChange={e => handleKeywordChange(idx, e.target.value)}
                     placeholder="Keyword"
                   />
-                  <button type="button" className="text-red-400 text-[0.5rem] w-2 h-auto outline" onClick={() => removeKeyword(idx)}>✕</button>
+                  <button type="button"
+                    className="bg-blue-400 text-white font-bold px-2 py-1 rounded-full text-xs transition-all duration-200 ease-in-out hover:bg-red-100 hover:text-blue-400"
+                    style={{ minWidth: 24, minHeight: 24 }}
+                    onClick={() => removeKeyword(idx)}>
+                    ✕
+                  </button>
                 </div>
               ))}
-              <button type="button" className="text-xs text-blue-400 outline mx-2" onClick={addKeyword}>+ Add keyword</button>
+              <button type="button"
+                className="bg-blue-400 text-white font-bold px-2 py-1 rounded-full text-xs transition-all duration-200 ease-in-out hover:bg-red-100 hover:text-blue-400 mx-2"
+                onClick={addKeyword}>
+                + Add keyword
+              </button>
             </div>
             <div>
               <div className="text-xs text-gray-400 font-bold mx-2 mb-1">Links</div>
               {form.links.map((link, idx) => (
                 <div key={idx} className="flex flex-col gap-1 mb-2 card sunken rounded p-2 mx-2">
                   <input
-                    className="p-2 text-xs text-left bg-darkless text-white rounded mt-1"
+                    className="p-2 text-xs text-left rounded mt-1"
+                    style={{ background: '#e0e6ed', color: '#111' }}
                     value={link.url}
                     onChange={e => handleLinkChange(idx, "url", e.target.value)}
                     placeholder="URL"
                   />
                   <div className="flex items-center gap-2">
                     <input
-                      className="p-2 text-xs text-left bg-darkless text-white rounded flex-1"
+                      className="p-2 text-xs text-left rounded flex-1"
+                      style={{ background: '#e0e6ed', color: '#111' }}
                       value={link.label}
                       onChange={e => handleLinkChange(idx, "label", e.target.value)}
                       placeholder="Label"
                     />
                     <button
                       type="button"
-                      className="text-[0.5rem] w-2 h-auto outline"
+                      className="bg-blue-400 text-white font-bold px-2 py-1 rounded-full text-xs transition-all duration-200 ease-in-out hover:bg-red-100 hover:text-blue-400"
+                      style={{ minWidth: 24, minHeight: 24 }}
                       onClick={() => removeLink(idx)}
                     >
                       ✕
@@ -148,29 +166,33 @@ export default function ProfileSidebar() {
                   </div>
                 </div>
               ))}
-              <button type="button" className="text-xs text-blue-400 outline mx-2" onClick={addLink}>+ Add link</button>
+              <button type="button"
+                className="bg-blue-400 text-white font-bold px-2 py-1 rounded-full text-xs transition-all duration-200 ease-in-out hover:bg-red-100 hover:text-blue-400 mx-2"
+                onClick={addLink}>
+                + Add link
+              </button>
             </div>
           </form>
         ) : (
           <div className="w-full flex flex-col gap-2">
-            <div className="text-lg font-bold text-white">{profile.name}</div>
-            <div className="text-xs text-white">{profile.slack}</div>
-            <div className="text-sm text-gray-200">{profile.location}</div>
-            <div className="text-sm text-gray-300">{profile.shortBio}</div>
-            <div className="text-xs text-gray-300" style={{ whiteSpace: "pre-line" }}>{profile.longBio}</div>
+            <div className="text-lg font-bold text-black">{profile.name}</div>
+            <div className="text-xs font-bold text-black">{profile.slack}</div>
+            <div className="text-sm font-bold text-black">{profile.location}</div>
+            <div className="text-sm font-bold text-black">{profile.shortBio}</div>
+            <div className="text-xs text-black" style={{ whiteSpace: "pre-line" }}>{profile.longBio}</div>
             <div>
-              <div className="text-xs text-gray-400 font-bold mb-1">Keywords</div>
+              <div className="text-xs text-black font-bold mb-1 uppercase tracking-wide">Keywords</div>
               <div className="flex flex-wrap gap-1">
                 {profile.keywords.map((kw, idx) => (
-                  <span key={idx} className="bg-gray-800 text-white px-2 py-0.5 text-xs outline-badge">{kw}</span>
+                  <span key={idx} className="bg-gray-200 text-black px-2 py-0.5 text-xs outline-badge">{kw}</span>
                 ))}
               </div>
             </div>
             <div>
-              <div className="text-xs text-gray-400 font-bold mb-1">Links</div>
+              <div className="text-xs text-black font-bold mb-1 uppercase tracking-wide">Links</div>
               <div className="flex flex-col gap-1">
                 {profile.links.map((link, idx) => (
-                  <a key={idx} href={link.url} className="text-blue-400 text-xs hover:underline" target="_blank" rel="noopener noreferrer">
+                  <a key={idx} href={link.url} className="text-blue-700 text-xs hover:underline" target="_blank" rel="noopener noreferrer">
                     {link.label}
                   </a>
                 ))}
@@ -179,14 +201,20 @@ export default function ProfileSidebar() {
           </div>
         )}
       </div>
-      <div className="fixed left-0 bottom-0 w-[clamp(12rem,22vw,20rem)] min-w-[10rem] max-w-[22rem] p-4 bg-background border-t border-border flex gap-2 z-50">
+  <div className="w-full flex gap-2 mt-6 mb-4 static">
         {editMode ? (
           <>
-            <button className="bg-gray-400 hover:bg-gray-700 text-white font-bold px-4 py-2 flex-1" onClick={handleCancel}>Cancel</button>
-            <button className="bg-green-500 hover:bg-green-700 text-white font-bold px-4 py-2 flex-1" onClick={handleSave}>Save Profile</button>
+            <button className="bg-blue-400 text-white font-bold px-4 py-2 mx-auto text-xs rounded-full transition-all duration-200 ease-in-out hover:bg-red-100 hover:text-blue-400" style={{ width: '70%' }} onClick={handleCancel}>Cancel</button>
+            <button className="bg-blue-400 text-white font-bold px-4 py-2 mx-auto text-xs rounded-full transition-all duration-200 ease-in-out hover:bg-red-100 hover:text-blue-400" style={{ width: '70%' }} onClick={handleSave}>Save</button>
           </>
         ) : (
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-2 w-full" onClick={() => setEditMode(true)}>Edit Profile</button>
+          <button 
+            className="bg-blue-400 text-white font-bold px-4 py-2 mx-auto text-xs rounded-full transition-all duration-200 ease-in-out hover:bg-red-100 hover:text-blue-400"
+            style={{ width: '70%' }}
+            onClick={() => setEditMode(true)}
+          >
+            Edit Profile
+          </button>
         )}
       </div>
     </aside>

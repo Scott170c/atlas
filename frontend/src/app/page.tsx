@@ -1,13 +1,13 @@
 import Layout from "../components/Layout";
 import ChatInterface from "../components/ChatInterface";
 import ProfileSidebar from "../components/ProfileSidebar";
-import DiscoveredProfilesSidebar from "../components/DiscoveredProfilesSidebar";
+
 
 function TitleArea() {
   return (
-    <div className="w-full py-4 px-8 border-b border-border bg-background">
-      <h1 className="title text-text">Atlas</h1>
-      <p className="caption text-secondary">Find and connect with Hack Club members.</p>
+  <div className="w-full pt-1 pb-2 px-6" style={{ background: '#fff' }}>
+      <h1 className="title font-bold text-black mb-1">Atlas</h1>
+      <p className="caption text-black mb-0">Find and connect with Hack Club members.</p>
     </div>
   );
 }
@@ -15,9 +15,8 @@ function TitleArea() {
 export default function Home() {
   return (
     <Layout
-      leftSidebar={<ProfileSidebar />}
-      rightSidebar={<DiscoveredProfilesSidebar />}
-      titleArea={<TitleArea />}
+  leftSidebar={<ProfileSidebar />}
+  titleArea={<TitleArea />}
     >
       <ChatInterface />
     </Layout>

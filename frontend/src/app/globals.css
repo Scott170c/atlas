@@ -106,9 +106,26 @@
     /* Chrome, Safari, Opera */
   }
 
+  /* Import Phantom Sans webfont from Hack Club CDN */
+  @font-face {
+    font-family: 'Phantom Sans';
+    src: url('https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Phantom_Sans_0.7-Regular.woff2') format('woff2'),
+         url('https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Phantom_Sans_0.7-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Phantom Sans';
+    src: url('https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Phantom_Sans_0.7-Bold.woff2') format('woff2'),
+         url('https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Phantom_Sans_0.7-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
   body {
-    font-family: "Phantom Sans", system-ui, -apple-system, BlinkMacSystemFont,
-      "Segoe UI", Roboto, sans-serif;
+    font-family: 'Phantom Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: var(--line-height-body);
     font-weight: var(--font-weight-body);
     margin: 0;
